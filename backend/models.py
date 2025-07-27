@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, EmailStr
+from pydantic import BaseModel, Field, EmailStr, ConfigDict
 from typing import List, Optional
 from datetime import datetime
 from bson import ObjectId
@@ -9,13 +9,15 @@ class PyObjectId(ObjectId):
         yield cls.validate
 
     @classmethod
-    def validate(cls, v):
-        if not ObjectId.is_valid(v):
-            raise ValueError("Invalid objectid")
-        return ObjectId(v)
+    def validate(cls, v, _info=None):
+        if isinstance(v, ObjectId):
+            return v
+        if isinstance(v, str) and ObjectId.is_valid(v):
+            return ObjectId(v)
+        raise ValueError("Invalid ObjectId")
 
     @classmethod
-    def __get_pydantic_json_schema__(cls, field_schema):
+    def __get_pydantic_json_schema__(cls, field_schema, _info=None):
         field_schema.update(type="string")
         return field_schema
 
