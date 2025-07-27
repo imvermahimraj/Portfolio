@@ -119,6 +119,31 @@ export const mockData = {
     ]
   },
 
+  hobbies: {
+    title: "Beyond Work",
+    description: "What drives me outside the professional world",
+    items: [
+      {
+        title: "Tennis Enthusiast",
+        description: "Passionate tennis fan who idolizes Rafael Nadal's fighting spirit, Federer's precision, and Djokovic's mental strength. Currently following rising stars like Zverev, Sinner, and Alcaraz in the new generation.",
+        icon: "tennis",
+        highlight: "Nadal's never-give-up attitude inspires my approach to debugging complex issues"
+      },
+      {
+        title: "Tech & Market Analysis", 
+        description: "Fascinated by emerging technologies, market trends, and financial data. Always exploring new tech innovations and understanding their market impact.",
+        icon: "trending",
+        highlight: "Analytical mindset that translates well into systematic testing approaches"
+      },
+      {
+        title: "Problem Solving",
+        description: "Natural problem solver who friends turn to for solutions. Love diving deep into details to understand root causes and find effective solutions.",
+        icon: "puzzle",
+        highlight: "This trait naturally led me from customer support to quality assurance"
+      }
+    ]
+  },
+
   contact: {
     email: "imvermahimraj@gmail.com",
     phone: "+91-9766567561",
