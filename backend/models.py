@@ -88,6 +88,12 @@ class ContactData(BaseModel):
     github: str
 
 class Portfolio(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+        arbitrary_types_allowed=True,
+        json_encoders={ObjectId: str}
+    )
+    
     id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
     hero: HeroData
     about: AboutData
@@ -100,11 +106,6 @@ class Portfolio(BaseModel):
     contact: ContactData
     createdAt: Optional[datetime] = Field(default_factory=datetime.utcnow)
     updatedAt: Optional[datetime] = Field(default_factory=datetime.utcnow)
-
-    class Config:
-        allow_population_by_field_name = True
-        arbitrary_types_allowed = True
-        json_encoders = {ObjectId: str}
 
 # Contact Form Models
 class ContactMessage(BaseModel):
