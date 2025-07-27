@@ -10,11 +10,13 @@ export const mockData = {
   
   about: {
     summary: "Quality Assurance (QA) Engineer with 2+ years of experience in Manual and Automation testing of web applications. Skilled in Selenium WebDriver with Java, API testing using Postman, Functional/UI testing, and cross-browser testing using BrowserStack. Experience with Adobe Experience Manager (AEM), Windchill (Common Components and Type/Attribute Management), BDD (Cucumber), STLC, and Agile/Scrum methodologies.",
+    personalStory: "My QA journey began unexpectedly while working in Level Support at a publishing company. Handling customer complaints daily, I started naturally identifying bugs in our products. My Tech Lead and QA team members were surprised by my instinct for spotting issues and suggested I transition to QA. Without any formal technical degree, I relied purely on working skills and my natural 'eye for QA' to build my career.",
+    philosophy: "I think like a user first. When I use a product and encounter an issue, I remember that frustration. As a QA, I ensure users never experience what I felt as a frustrated user. Quality isn't just my job—it's about user empathy.",
     strengths: [
-      "Deep understanding of testing principles and STLC",
-      "Hands-on with test case design, defect logging, and agile collaboration",
-      "Proficient in Java basics and test automation frameworks",
-      "Strong communicator and team player, fast adaptability"
+      "Natural problem-solver with an eye for detail",
+      "User-centric approach to quality assurance",
+      "Self-taught expertise built on practical experience",
+      "Strong analytical thinking from real-world problem solving"
     ]
   },
 
