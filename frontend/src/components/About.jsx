@@ -1,17 +1,37 @@
 import React from 'react';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, Users, Heart } from 'lucide-react';
 
 const About = ({ data }) => {
   return (
     <section className="about-section" id="about">
       <div className="section-container">
         <div className="section-header">
-          <h2 className="section-title">Professional Summary</h2>
+          <h2 className="section-title">About Me</h2>
         </div>
         
         <div className="about-content">
-          <div className="about-summary">
-            <p className="summary-text">{data.summary}</p>
+          <div className="about-main">
+            <div className="about-summary">
+              <p className="summary-text">{data.summary}</p>
+            </div>
+            
+            {/* Personal Story */}
+            <div className="personal-story">
+              <div className="story-header">
+                <Users size={20} className="story-icon" />
+                <h3 className="story-title">My QA Journey</h3>
+              </div>
+              <p className="story-text">{data.personalStory}</p>
+            </div>
+
+            {/* Philosophy */}
+            <div className="philosophy">
+              <div className="philosophy-header">
+                <Heart size={20} className="philosophy-icon" />
+                <h3 className="philosophy-title">My Philosophy</h3>
+              </div>
+              <p className="philosophy-text">{data.philosophy}</p>
+            </div>
           </div>
           
           <div className="about-strengths">
