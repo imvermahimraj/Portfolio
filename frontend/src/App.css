@@ -841,6 +841,106 @@ body {
   }
 }
 
+/* Hobbies Section */
+.hobbies-section {
+  background: var(--bg-page);
+}
+
+.hobbies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hobby-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: 12px;
+  padding: 32px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.hobby-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--brand-primary);
+}
+
+.hobby-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.hobby-icon-wrapper {
+  background: var(--secondary-olive);
+  padding: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hobby-icon {
+  color: var(--brand-primary);
+}
+
+.hobby-title {
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.hobby-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hobby-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.hobby-highlight {
+  background: var(--secondary-olive);
+  padding: 12px 16px;
+  border-radius: 8px;
+  border-left: 4px solid var(--brand-primary);
+}
+
+.highlight-text {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+@media (max-width: 767px) {
+  .hobbies-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .hobby-card {
+    padding: 24px;
+  }
+  
+  .hobby-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+}
+
 /* Contact Section */
 .contact-content {
   display: grid;
