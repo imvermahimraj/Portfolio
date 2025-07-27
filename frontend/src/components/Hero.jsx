@@ -1,11 +1,46 @@
-import React from 'react';
-import { MapPin, Phone, Mail, Download } from 'lucide-react';
+import React, { useState } from 'react';
+import { MapPin, Phone, Mail, Download, AlertCircle } from 'lucide-react';
+import { portfolioAPI } from '../services/api';
 
 const Hero = ({ data }) => {
-  const handleDownloadResume = () => {
-    // Mock download functionality - will be implemented with backend
-    console.log('Downloading resume...');
-    alert('Resume download will be available soon!');
+  const [downloadState, setDownloadState] = useState({
+    loading: false,
+    error: null
+  });
+
+  const handleDownloadResume = async () => {
+    setDownloadState({
+      loading: true,
+      error: null
+    });
+
+    try {
+      const result = await portfolioAPI.downloadResume();
+      
+      if (result.success) {
+        setDownloadState({
+          loading: false,
+          error: null
+        });
+      } else {
+        setDownloadState({
+          loading: false,
+          error: result.error || 'Resume not available for download yet'
+        });
+      }
+    } catch (error) {
+      setDownloadState({
+        loading: false,
+        error: 'Failed to download resume. Please try again.'
+      });
+    }
+
+    // Clear error after 5 seconds
+    if (downloadState.error) {
+      setTimeout(() => {
+        setDownloadState(prev => ({ ...prev, error: null }));
+      }, 5000);
+    }
   };
 
   return (
@@ -32,6 +67,14 @@ const Hero = ({ data }) => {
               </div>
             </div>
 
+            {/* Download Error Message */}
+            {downloadState.error && (
+              <div className="hero-error-message">
+                <AlertCircle size={16} />
+                <span>{downloadState.error}</span>
+              </div>
+            )}
+
             <div className="hero-actions">
               <button 
                 className="btn-primary"
@@ -40,11 +83,21 @@ const Hero = ({ data }) => {
                 Get in Touch
               </button>
               <button 
-                className="btn-secondary"
+                className={`btn-secondary ${downloadState.loading ? 'loading' : ''}`}
                 onClick={handleDownloadResume}
+                disabled={downloadState.loading}
               >
-                <Download size={16} />
-                Download Resume
+                {downloadState.loading ? (
+                  <>
+                    <div className="button-spinner"></div>
+                    Downloading...
+                  </>
+                ) : (
+                  <>
+                    <Download size={16} />
+                    Download Resume
+                  </>
+                )}
               </button>
             </div>
           </div>
