@@ -109,6 +109,12 @@ class Portfolio(BaseModel):
 
 # Contact Form Models
 class ContactMessage(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+        arbitrary_types_allowed=True,
+        json_encoders={ObjectId: str}
+    )
+    
     id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
     name: str
     email: EmailStr
@@ -116,11 +122,6 @@ class ContactMessage(BaseModel):
     message: str
     status: str = "new"  # 'new', 'read', 'replied'
     createdAt: Optional[datetime] = Field(default_factory=datetime.utcnow)
-
-    class Config:
-        allow_population_by_field_name = True
-        arbitrary_types_allowed = True
-        json_encoders = {ObjectId: str}
 
 class ContactMessageCreate(BaseModel):
     name: str
