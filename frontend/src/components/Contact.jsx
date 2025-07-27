@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Linkedin, Github, Send } from 'lucide-react';
-import { useToast } from '../hooks/use-toast';
+import { Mail, Phone, MapPin, Linkedin, Github, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { portfolioAPI } from '../services/api';
 
 const Contact = ({ data }) => {
   const [formData, setFormData] = useState({
@@ -9,7 +9,11 @@ const Contact = ({ data }) => {
     subject: '',
     message: ''
   });
-  const { toast } = useToast();
+  const [submissionState, setSubmissionState] = useState({
+    loading: false,
+    success: false,
+    error: null
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -19,22 +23,71 @@ const Contact = ({ data }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Mock form submission - will be implemented with backend
-    console.log('Contact form submitted:', formData);
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for your message. I'll get back to you soon.",
-    });
     
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
+    // Basic validation
+    if (!formData.name.trim() || !formData.email.trim() || 
+        !formData.subject.trim() || !formData.message.trim()) {
+      setSubmissionState({
+        loading: false,
+        success: false,
+        error: 'Please fill in all fields'
+      });
+      return;
+    }
+
+    if (formData.message.trim().length < 10) {
+      setSubmissionState({
+        loading: false,
+        success: false,
+        error: 'Message must be at least 10 characters long'
+      });
+      return;
+    }
+
+    setSubmissionState({
+      loading: true,
+      success: false,
+      error: null
     });
+
+    try {
+      const result = await portfolioAPI.submitContactForm(formData);
+      
+      if (result.success) {
+        setSubmissionState({
+          loading: false,
+          success: true,
+          error: null
+        });
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+
+        // Clear success message after 5 seconds
+        setTimeout(() => {
+          setSubmissionState(prev => ({ ...prev, success: false }));
+        }, 5000);
+      } else {
+        setSubmissionState({
+          loading: false,
+          success: false,
+          error: result.error || 'Failed to send message. Please try again.'
+        });
+      }
+    } catch (error) {
+      setSubmissionState({
+        loading: false,
+        success: false,
+        error: 'Network error. Please check your connection and try again.'
+      });
+    }
   };
 
   return (
@@ -95,6 +148,22 @@ const Contact = ({ data }) => {
 
           <div className="contact-form-container">
             <form className="contact-form" onSubmit={handleSubmit}>
+              {/* Success Message */}
+              {submissionState.success && (
+                <div className="form-message success-message">
+                  <CheckCircle size={16} />
+                  <span>Message sent successfully! I'll get back to you soon.</span>
+                </div>
+              )}
+
+              {/* Error Message */}
+              {submissionState.error && (
+                <div className="form-message error-message">
+                  <AlertCircle size={16} />
+                  <span>{submissionState.error}</span>
+                </div>
+              )}
+
               <div className="form-group">
                 <label htmlFor="name" className="form-label">Name</label>
                 <input
@@ -105,6 +174,7 @@ const Contact = ({ data }) => {
                   onChange={handleInputChange}
                   className="form-input"
                   required
+                  disabled={submissionState.loading}
                 />
               </div>
               
@@ -118,6 +188,7 @@ const Contact = ({ data }) => {
                   onChange={handleInputChange}
                   className="form-input"
                   required
+                  disabled={submissionState.loading}
                 />
               </div>
               
@@ -131,6 +202,7 @@ const Contact = ({ data }) => {
                   onChange={handleInputChange}
                   className="form-input"
                   required
+                  disabled={submissionState.loading}
                 />
               </div>
               
@@ -144,12 +216,26 @@ const Contact = ({ data }) => {
                   rows="5"
                   className="form-textarea"
                   required
+                  disabled={submissionState.loading}
                 />
               </div>
               
-              <button type="submit" className="btn-primary btn-submit">
-                <Send size={16} />
-                Send Message
+              <button 
+                type="submit" 
+                className={`btn-primary btn-submit ${submissionState.loading ? 'loading' : ''}`}
+                disabled={submissionState.loading}
+              >
+                {submissionState.loading ? (
+                  <>
+                    <div className="button-spinner"></div>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send size={16} />
+                    Send Message
+                  </>
+                )}
               </button>
             </form>
           </div>
