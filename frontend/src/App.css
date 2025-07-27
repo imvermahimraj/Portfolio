@@ -678,65 +678,26 @@ body {
   margin: 0 auto;
 }
 
-.education-item {
-  background: var(--bg-card);
-  border: 1px solid var(--border-medium);
-  border-radius: 8px;
-  padding: 32px;
-  margin-bottom: 32px;
-}
-
-.education-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.education-icon {
-  color: var(--brand-primary);
-  flex-shrink: 0;
-}
-
-.degree-title {
-  font-family: 'Inter', Arial, sans-serif;
-  font-weight: 600;
-  font-size: 1.25rem;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.institution-name {
-  color: var(--text-secondary);
-  font-weight: 500;
-  margin-bottom: 4px;
-}
-
-.institution-location {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
-.certifications-title {
-  font-family: 'Inter', Arial, sans-serif;
-  font-weight: 600;
-  font-size: 1.25rem;
-  color: var(--text-primary);
-  margin: 32px 0 20px 0;
-}
-
 .certifications-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .certification-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px;
-  background: var(--secondary-olive);
-  border-radius: 6px;
+  gap: 16px;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.certification-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--brand-primary);
 }
 
 .certification-icon {
@@ -747,6 +708,77 @@ body {
 .certification-name {
   color: var(--text-primary);
   font-weight: 500;
+  font-size: 1.1rem;
+}
+
+/* Interests Section */
+.interests-section {
+  background: var(--bg-card);
+}
+
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 32px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.interest-card {
+  background: var(--bg-page);
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  padding: 32px;
+  text-align: center;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.interest-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--brand-primary);
+}
+
+.interest-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.interest-icon {
+  color: var(--brand-primary);
+  background: var(--secondary-olive);
+  padding: 12px;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+}
+
+.interest-title {
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.interest-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .interests-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .interest-card {
+    padding: 24px;
+  }
 }
 
 /* Contact Section */
