@@ -73,8 +73,8 @@ async def save_resume_file(file_data: dict):
     )
     
     # Save new file as active
-    resume_file = ResumeFile(**file_data)
-    result = await resume_collection.insert_one(resume_file.dict(by_alias=True))
+    file_data['uploadedAt'] = datetime.utcnow()
+    result = await resume_collection.insert_one(file_data)
     
     if result.inserted_id:
         saved_file = await resume_collection.find_one({"_id": result.inserted_id})
