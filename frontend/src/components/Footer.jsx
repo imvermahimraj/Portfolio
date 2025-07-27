@@ -29,8 +29,8 @@ const Footer = () => {
                 <button onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}>
                   Projects
                 </button>
-                <button onClick={() => document.getElementById('interests').scrollIntoView({ behavior: 'smooth' })}>
-                  Interests
+                <button onClick={() => document.getElementById('hobbies').scrollIntoView({ behavior: 'smooth' })}>
+                  Hobbies
                 </button>
               </div>
             </div>
