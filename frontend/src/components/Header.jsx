@@ -19,6 +19,7 @@ const Header = () => {
     { label: 'Projects', section: 'projects' },
     { label: 'Education', section: 'education' },
     { label: 'Interests', section: 'interests' },
+    { label: 'Hobbies', section: 'hobbies' },
     { label: 'Contact', section: 'contact' }
   ];
 
