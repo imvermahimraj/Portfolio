@@ -7,6 +7,7 @@ import Experience from './Experience';
 import Projects from './Projects';
 import Education from './Education';
 import Interests from './Interests';
+import Hobbies from './Hobbies';
 import Contact from './Contact';
 import Footer from './Footer';
 import { mockData } from '../data/mockData';
@@ -24,6 +25,7 @@ const Portfolio = () => {
       <Projects data={portfolioData.projects} />
       <Education data={portfolioData.education} />
       <Interests data={portfolioData.interests} />
+      <Hobbies data={portfolioData.hobbies} />
       <Contact data={portfolioData.contact} />
       <Footer />
     </div>
