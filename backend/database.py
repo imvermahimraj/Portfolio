@@ -51,8 +51,8 @@ async def create_or_update_portfolio(portfolio_data: dict):
 
 async def save_contact_message(contact_data: dict):
     """Save contact message to database"""
-    contact_message = ContactMessage(**contact_data)
-    result = await contacts_collection.insert_one(contact_message.dict(by_alias=True))
+    contact_data['createdAt'] = datetime.utcnow()
+    result = await contacts_collection.insert_one(contact_data)
     
     if result.inserted_id:
         saved_message = await contacts_collection.find_one({"_id": result.inserted_id})
