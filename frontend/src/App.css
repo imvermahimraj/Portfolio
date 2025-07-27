@@ -413,10 +413,70 @@ body {
   align-items: start;
 }
 
+.about-main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
 .summary-text {
   font-size: 1.25rem;
   line-height: 1.6;
   color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+/* Personal Story */
+.personal-story {
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.story-header,
+.philosophy-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.story-icon,
+.philosophy-icon {
+  color: var(--brand-primary);
+}
+
+.story-title,
+.philosophy-title {
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.story-text,
+.philosophy-text {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Philosophy */
+.philosophy {
+  background: var(--secondary-olive);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.philosophy .philosophy-title {
+  color: var(--text-primary);
+}
+
+.philosophy .philosophy-text {
+  color: var(--text-primary);
 }
 
 .strengths-title {
