@@ -90,11 +90,30 @@ export const mockData = {
   ],
 
   education: {
-    degree: "BA LLB",
-    institution: "CMR Law School",
-    location: "Bangalore",
     certifications: [
       "API Testing using Postman"
+    ]
+  },
+
+  interests: {
+    title: "Interests & Future Plans",
+    description: "Passionate about continuous learning and knowledge sharing in the QA domain",
+    items: [
+      {
+        title: "SDLC Expertise",
+        description: "Deeply interested in Software Development Life Cycle and its integration with quality assurance processes",
+        icon: "cycle"
+      },
+      {
+        title: "Knowledge Sharing",
+        description: "Aspiring to grow my expertise so that I can effectively teach and mentor others about the role and responsibilities of QA professionals",
+        icon: "teach"
+      },
+      {
+        title: "Industry Growth",
+        description: "Committed to staying updated with latest testing methodologies, tools, and best practices in the evolving tech landscape",
+        icon: "growth"
+      }
     ]
   },
 
